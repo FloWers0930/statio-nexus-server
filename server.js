@@ -40,6 +40,9 @@ const allowedOrigins =
 app.disable("x-powered-by");
 app.set("trust proxy", 1);
 
+// ── CORS preflight must be before helmet ─────────────────────────────────────
+app.options("*", cors(corsOptions));
+
 // ── Middleware ───────────────────────────────────────────────────────────────
 app.use(
   helmet({
