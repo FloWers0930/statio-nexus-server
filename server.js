@@ -17,15 +17,65 @@ const loggerMiddleware = require("./Components/middlewares/requestLogger");
 const { apiLimiter } = require("./Components/middlewares/rateLimiter");
 const errorHandler = require("./Components/middlewares/errorHandler");
 const Audit = require("./Components/modules/audit/audit.model");
+
+// ── Route Imports with Debug Logging ──────────────────────────────────────────
 const authRoutes = require("./Components/modules/auth/auth.routes");
+console.log(
+  "🔍 authRoutes loaded:",
+  typeof authRoutes,
+  authRoutes ? "✅" : "❌",
+);
+
 const ownerRoutes = require("./Components/modules/owner/owner.routes");
+console.log(
+  "🔍 ownerRoutes loaded:",
+  typeof ownerRoutes,
+  ownerRoutes ? "✅" : "❌",
+);
+
 const stationRoutes = require("./Components/modules/station/station.routes");
+console.log(
+  "🔍 stationRoutes loaded:",
+  typeof stationRoutes,
+  stationRoutes ? "✅" : "❌",
+);
+
 const { seedDatabase } = require("./Components/seed/seedUsers");
+
 const adminRoutes = require("./Components/modules/admin/admin.routes");
+console.log(
+  "🔍 adminRoutes loaded:",
+  typeof adminRoutes,
+  adminRoutes ? "✅" : "❌",
+);
+
 const analyticsRoutes = require("./Components/modules/analytics/analytics.routes");
+console.log(
+  "🔍 analyticsRoutes loaded:",
+  typeof analyticsRoutes,
+  analyticsRoutes ? "✅" : "❌",
+);
+
 const supportRoutes = require("./Components/modules/support/support.routes");
+console.log(
+  "🔍 supportRoutes loaded:",
+  typeof supportRoutes,
+  supportRoutes ? "✅" : "❌",
+);
+
 const auditRoutes = require("./Components/modules/audit/audit.routes");
+console.log(
+  "🔍 auditRoutes loaded:",
+  typeof auditRoutes,
+  auditRoutes ? "✅" : "❌",
+);
+
 const transactionRoutes = require("./Components/modules/transaction/transactionRoutes");
+console.log(
+  "🔍 transactionRoutes loaded:",
+  typeof transactionRoutes,
+  transactionRoutes ? "✅" : "❌",
+);
 
 const sentry = initSentry();
 const app = express();
@@ -108,6 +158,7 @@ app.use(cookieParser());
 app.use("/api", apiLimiter);
 
 // ── Routes ────────────────────────────────────────────────────────────────────
+console.log("📝 Registering routes...");
 app.use("/api/auth", authRoutes);
 app.use("/api/owner", ownerRoutes);
 app.use("/api/station", stationRoutes);
@@ -116,13 +167,18 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/analytics", analyticsRoutes);
 app.use("/api/audit", auditRoutes);
 app.use("/api/transactions", transactionRoutes);
+console.log("✅ All routes registered successfully");
 
 app.get("/api/health", (_req, res) =>
   res.json({ success: true, status: "OK" }),
 );
+
+// ── 404 Handler with Debug Logging ────────────────────────────────────────────
 app.use((req, res) => {
+  console.log(`❌ 404 - Route not found: ${req.method} ${req.url}`);
   res.status(404).json({ success: false, message: "Route not found" });
 });
+
 app.use(errorHandler);
 
 if (sentry) {
@@ -376,4 +432,3 @@ const shutdown = async (signal) => {
 
 process.on("SIGTERM", () => shutdown("SIGTERM"));
 process.on("SIGINT", () => shutdown("SIGINT"));
-cl
