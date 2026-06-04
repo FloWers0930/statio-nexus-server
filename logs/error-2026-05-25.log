@@ -1,2 +1,0 @@
-{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2beb56d68adsm106783695ad.32 - gsmtp","level":"error","message":"Email transporter verification failed"}
-{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-84164fd8127sm8640525b3a.50 - gsmtp","level":"error","message":"Email transporter verification failed"}
