@@ -33,14 +33,11 @@ const server = http.createServer(app);
 
 const isProduction = process.env.NODE_ENV === "production";
 
-// ✅ In production ALLOWED_ORIGINS must be set — no localhost fallback
 const allowedOrigins =
   process.env.ALLOWED_ORIGINS?.split(",").map((o) => o.trim()) ??
   (isProduction ? [] : ["http://localhost:5173", "http://localhost:5174"]);
 
 app.disable("x-powered-by");
-
-// ✅ Trust proxy for DigitalOcean Nginx reverse proxy
 app.set("trust proxy", 1);
 
 // ── Middleware ───────────────────────────────────────────────────────────────
@@ -64,23 +61,26 @@ app.use(
 );
 app.use(compression());
 app.use(mongoSanitize());
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.includes(origin)) return callback(null, true);
-      logger.warn(`CORS blocked request from origin: ${origin}`);
-      callback(new Error(`Origin ${origin} not allowed by CORS`));
-    },
-    credentials: true, // 🔑 Required for HTTP-only refresh cookies
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-    allowedHeaders: ["Content-Type", "Authorization"], // 🔒 CSRF header removed
-  }),
-);
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+    logger.warn(`CORS blocked request from origin: ${origin}`);
+    callback(new Error(`Origin ${origin} not allowed by CORS`));
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+app.options("*", cors(corsOptions));
+app.use(cors(corsOptions));
+
 app.use(loggerMiddleware);
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
-app.use(cookieParser()); // 🍪 Must be before routes
+app.use(cookieParser());
 app.use("/api", apiLimiter);
 
 // ── Routes ────────────────────────────────────────────────────────────────────
@@ -105,7 +105,7 @@ if (sentry) {
   app.use(require("@sentry/node").Handlers.errorHandler());
 }
 
-// ── Socket.IO (Hardened) ─────────────────────────────────────────────────────
+// ── Socket.IO ─────────────────────────────────────────────────────────────────
 const io = new Server(server, {
   cors: { origin: allowedOrigins, credentials: true },
   transports: ["websocket", "polling"],
@@ -114,7 +114,7 @@ const io = new Server(server, {
   maxHttpBufferSize: 1e6,
 });
 
-const activeConnections = new Map(); // userId -> Set<socketId>
+const activeConnections = new Map();
 
 io.use((socket, next) => {
   const token = socket.handshake.auth.token;
@@ -242,41 +242,27 @@ const validateEnvironment = () => {
 
   const missing = requiredVars.filter((v) => !process.env[v]);
   if (missing.length > 0) {
-    logger.error(
-      `❌ Missing required environment variables: ${missing.join(", ")}`,
-    );
-    throw new Error(
-      `Missing required environment variables: ${missing.join(", ")}`,
-    );
+    logger.error(`❌ Missing required environment variables: ${missing.join(", ")}`);
+    throw new Error(`Missing required environment variables: ${missing.join(", ")}`);
   }
 
   if (process.env.JWT_SECRET.length < 32) {
-    logger.error(
-      "❌ JWT_SECRET must be at least 32 characters long for security",
-    );
+    logger.error("❌ JWT_SECRET must be at least 32 characters long for security");
     throw new Error("JWT_SECRET must be at least 32 characters long");
   }
 
   if (process.env.JWT_REFRESH_SECRET.length < 32) {
-    logger.error(
-      "❌ JWT_REFRESH_SECRET must be at least 32 characters long for security",
-    );
+    logger.error("❌ JWT_REFRESH_SECRET must be at least 32 characters long for security");
     throw new Error("JWT_REFRESH_SECRET must be at least 32 characters long");
   }
 
   if (isProduction && allowedOrigins.some((o) => o.includes("localhost"))) {
-    logger.warn(
-      "⚠️ ALLOWED_ORIGINS contains localhost entries in production — this is a security risk",
-    );
+    logger.warn("⚠️ ALLOWED_ORIGINS contains localhost entries in production — this is a security risk");
   }
 
   const missingOptional = optionalButImportant.filter((v) => !process.env[v]);
   if (missingOptional.length > 0) {
-    logger.warn(
-      `⚠️ Optional environment variables missing: ${missingOptional.join(
-        ", ",
-      )}. Some features may not work.`,
-    );
+    logger.warn(`⚠️ Optional environment variables missing: ${missingOptional.join(", ")}. Some features may not work.`);
   }
 
   logger.info("✅ All required environment variables validated");
@@ -326,11 +312,7 @@ const start = async () => {
   app.locals.io = io;
 
   server.listen(PORT, () => {
-    logger.info(
-      `🚀 Server running on port ${PORT} in ${
-        process.env.NODE_ENV || "development"
-      } mode`,
-    );
+    logger.info(`🚀 Server running on port ${PORT} in ${process.env.NODE_ENV || "development"} mode`);
     logger.info(`🌐 Allowed origins: ${allowedOrigins.join(", ") || "none"}`);
   });
 };
