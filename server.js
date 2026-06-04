@@ -37,6 +37,18 @@ const allowedOrigins =
   process.env.ALLOWED_ORIGINS?.split(",").map((o) => o.trim()) ??
   (isProduction ? [] : ["http://localhost:5173", "http://localhost:5174"]);
 
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+    logger.warn(`CORS blocked request from origin: ${origin}`);
+    callback(new Error(`Origin ${origin} not allowed by CORS`));
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
 app.disable("x-powered-by");
 app.set("trust proxy", 1);
 
@@ -64,22 +76,7 @@ app.use(
 );
 app.use(compression());
 app.use(mongoSanitize());
-
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) return callback(null, true);
-    logger.warn(`CORS blocked request from origin: ${origin}`);
-    callback(new Error(`Origin ${origin} not allowed by CORS`));
-  },
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-};
-
-app.options("*", cors(corsOptions));
 app.use(cors(corsOptions));
-
 app.use(loggerMiddleware);
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
@@ -222,7 +219,6 @@ const validateRoomAccess = (socket, room) => {
   }
 };
 
-// ── Environment Validation ───────────────────────────────────────────────────
 const PORT = process.env.PORT || 5000;
 
 const validateEnvironment = () => {
@@ -245,33 +241,46 @@ const validateEnvironment = () => {
 
   const missing = requiredVars.filter((v) => !process.env[v]);
   if (missing.length > 0) {
-    logger.error(`❌ Missing required environment variables: ${missing.join(", ")}`);
-    throw new Error(`Missing required environment variables: ${missing.join(", ")}`);
+    logger.error(
+      `❌ Missing required environment variables: ${missing.join(", ")}`,
+    );
+    throw new Error(
+      `Missing required environment variables: ${missing.join(", ")}`,
+    );
   }
 
   if (process.env.JWT_SECRET.length < 32) {
-    logger.error("❌ JWT_SECRET must be at least 32 characters long for security");
+    logger.error(
+      "❌ JWT_SECRET must be at least 32 characters long for security",
+    );
     throw new Error("JWT_SECRET must be at least 32 characters long");
   }
 
   if (process.env.JWT_REFRESH_SECRET.length < 32) {
-    logger.error("❌ JWT_REFRESH_SECRET must be at least 32 characters long for security");
+    logger.error(
+      "❌ JWT_REFRESH_SECRET must be at least 32 characters long for security",
+    );
     throw new Error("JWT_REFRESH_SECRET must be at least 32 characters long");
   }
 
   if (isProduction && allowedOrigins.some((o) => o.includes("localhost"))) {
-    logger.warn("⚠️ ALLOWED_ORIGINS contains localhost entries in production — this is a security risk");
+    logger.warn(
+      "⚠️ ALLOWED_ORIGINS contains localhost entries in production — this is a security risk",
+    );
   }
 
   const missingOptional = optionalButImportant.filter((v) => !process.env[v]);
   if (missingOptional.length > 0) {
-    logger.warn(`⚠️ Optional environment variables missing: ${missingOptional.join(", ")}. Some features may not work.`);
+    logger.warn(
+      `⚠️ Optional environment variables missing: ${missingOptional.join(
+        ", ",
+      )}. Some features may not work.`,
+    );
   }
 
   logger.info("✅ All required environment variables validated");
 };
 
-// ── Start ─────────────────────────────────────────────────────────────────────
 const start = async () => {
   validateEnvironment();
   await connectDB();
@@ -315,7 +324,11 @@ const start = async () => {
   app.locals.io = io;
 
   server.listen(PORT, () => {
-    logger.info(`🚀 Server running on port ${PORT} in ${process.env.NODE_ENV || "development"} mode`);
+    logger.info(
+      `🚀 Server running on port ${PORT} in ${
+        process.env.NODE_ENV || "development"
+      } mode`,
+    );
     logger.info(`🌐 Allowed origins: ${allowedOrigins.join(", ") || "none"}`);
   });
 };
@@ -325,7 +338,6 @@ start().catch((err) => {
   process.exit(1);
 });
 
-// ── Graceful Shutdown ─────────────────────────────────────────────────────────
 const shutdown = async (signal) => {
   logger.info(`${signal} received — shutting down gracefully`);
   server.close(() => {
