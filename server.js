@@ -33,20 +33,44 @@ const server = http.createServer(app);
 
 const isProduction = process.env.NODE_ENV === "production";
 
+// 👇 UPDATED: Added .filter(Boolean) to prevent empty strings from breaking CORS if .env has trailing commas
 const allowedOrigins =
-  process.env.ALLOWED_ORIGINS?.split(",").map((o) => o.trim()) ??
+  process.env.ALLOWED_ORIGINS?.split(",")
+    .map((o) => o.trim())
+    .filter(Boolean) ??
   (isProduction ? [] : ["http://localhost:5173", "http://localhost:5174"]);
 
+// 👇 UPDATED: Completely overhauled to fix 500 preflight errors
 const corsOptions = {
   origin: (origin, callback) => {
+    // 1. Allow requests with no origin (like mobile apps, curl, Postman)
     if (!origin) return callback(null, true);
+
+    // 2. DEVELOPMENT FIX: Automatically allow ALL localhost/127.0.0.1 variants and ports
+    // This prevents 500 errors caused by Vite changing ports or using 127.0.0.1
+    if (
+      !isProduction &&
+      /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)
+    ) {
+      return callback(null, true);
+    }
+
+    // 3. Check against the explicit allowedOrigins list (for production)
     if (allowedOrigins.includes(origin)) return callback(null, true);
-    logger.warn(`CORS blocked request from origin: ${origin}`);
-    callback(new Error(`Origin ${origin} not allowed by CORS`));
+
+    // 4. FIX THE 500 ERROR:
+    // Previously, `callback(new Error(...))` crashed the request and returned a 500.
+    // Using `callback(null, false)` tells the cors package to simply block it without crashing.
+    logger.warn(`❌ CORS blocked request from origin: ${origin}`);
+    callback(null, false);
   },
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+
+  // 👇 UPDATED: REMOVED the strict `allowedHeaders` array!
+  // If Axios sends an extra header (like 'Accept' or 'X-Requested-With'),
+  // a strict array causes the preflight to crash with a 500 error.
+  // Omitting it allows the cors package to automatically reflect the requested headers.
 };
 
 app.disable("x-powered-by");
@@ -352,3 +376,4 @@ const shutdown = async (signal) => {
 
 process.on("SIGTERM", () => shutdown("SIGTERM"));
 process.on("SIGINT", () => shutdown("SIGINT"));
+cl
