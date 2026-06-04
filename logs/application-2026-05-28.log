@@ -1,0 +1,338 @@
+{"level":"info","message":"❌ Socket disconnected: oxH4D4zUwqM2rRfLAAAF"}
+{"level":"info","message":"❌ Socket disconnected: gkvgyMAF9_Rc2IU5AAAI"}
+{"level":"info","message":"❌ Socket disconnected: P2L8n10-Y8GCKzPIAAAJ"}
+{"level":"info","message":"❌ Socket disconnected: 0E5m71BAloJcMEx3AAAE"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-02.ju6heal.mongodb.net"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-01.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-36b90950ea4sm302039a91.14 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-01.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2beb58d9ce4sm161530905ad.64 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-00.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2beb591f63dsm216393605ad.83 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-01.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2beb56ba00csm167582225ad.22 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-01.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-841d70f1ed8sm4337292b3a.43 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-00.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-841d6e81776sm3794200b3a.11 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-01.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-36b908e15acsm444468a91.2 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-02.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-841d70f5ecfsm3685344b3a.46 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-02.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-36b7e4d0e18sm357800a91.2 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-02.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-36b9090b6b7sm440938a91.7 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-02.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 41be03b00d2f7-c85202903absm13961232a12.7 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-00.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2bf0534e4c2sm9111075ad.5 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-02.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2beb58db58esm161245075ad.62 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-00.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2beff36894dsm12795985ad.37 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-02.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-36b7d518459sm398611a91.0 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-00.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-36b90900f36sm507514a91.5 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-02.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2beb569592dsm164104365ad.16 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-02.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-36b909456ecsm626608a91.12 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"email":"owner@statio-nexus.com","level":"info","message":"✅ User logged in successfully","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"🔌 Socket connected: X9W7foz1CPsxLqWWAAAB","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7651fe1e4077f88f87","socketId":"X9W7foz1CPsxLqWWAAAB"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"info","message":"📍 Socket joined room: owner:6a0e1c7651fe1e4077f88f87","socketId":"X9W7foz1CPsxLqWWAAAB"}
+{"level":"info","message":"❌ Socket disconnected: X9W7foz1CPsxLqWWAAAB"}
+{"error":"jwt expired","level":"warn","message":"Invalid Socket.IO token"}
+{"email":"owner@statio-nexus.com","level":"info","message":"✅ User logged in successfully","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"🔌 Socket connected: ZTxX5KZ7oPUeP_vGAAAF","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7651fe1e4077f88f87","socketId":"ZTxX5KZ7oPUeP_vGAAAF"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"info","message":"📍 Socket joined room: owner:6a0e1c7651fe1e4077f88f87","socketId":"ZTxX5KZ7oPUeP_vGAAAF"}
+{"level":"info","message":"❌ Socket disconnected: ZTxX5KZ7oPUeP_vGAAAF"}
+{"error":"jwt expired","level":"warn","message":"Invalid Socket.IO token"}
+{"email":"owner@statio-nexus.com","level":"info","message":"✅ User logged in successfully","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"🔌 Socket connected: _wgnj05IcvOhDJh1AAAJ","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7651fe1e4077f88f87","socketId":"_wgnj05IcvOhDJh1AAAJ"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"info","message":"📍 Socket joined room: owner:6a0e1c7651fe1e4077f88f87","socketId":"_wgnj05IcvOhDJh1AAAJ"}
+{"level":"info","message":"✅ User logged out","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"❌ Socket disconnected: _wgnj05IcvOhDJh1AAAJ"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"email":"admin@statio-nexus.com","level":"info","message":"✅ User logged in successfully","role":"admin","userId":"6a0e1c7551fe1e4077f88f7f"}
+{"level":"info","message":"🔌 Socket connected: xbGX-rsjW20fxBa1AAAL","role":"admin","userId":"6a0e1c7551fe1e4077f88f7f"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7551fe1e4077f88f7f","socketId":"xbGX-rsjW20fxBa1AAAL"}
+{"level":"info","message":"📍 Socket joined room: owner:6a0e1c7551fe1e4077f88f7f","socketId":"xbGX-rsjW20fxBa1AAAL"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"info","message":"✅ User logged out","role":"admin","userId":"6a0e1c7551fe1e4077f88f7f"}
+{"level":"info","message":"❌ Socket disconnected: xbGX-rsjW20fxBa1AAAL"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"email":"owner@statio-nexus.com","level":"info","message":"✅ User logged in successfully","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"🔌 Socket connected: ytrxaLbbYf4N3ZFvAAAN","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7651fe1e4077f88f87","socketId":"ytrxaLbbYf4N3ZFvAAAN"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"info","message":"📍 Socket joined room: owner:6a0e1c7651fe1e4077f88f87","socketId":"ytrxaLbbYf4N3ZFvAAAN"}
+{"error":"jwt expired","level":"error","message":"Auth middleware error:","name":"TokenExpiredError","path":"/spots"}
+{"level":"info","message":"✅ Token refreshed successfully","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"info","message":"❌ Socket disconnected: ytrxaLbbYf4N3ZFvAAAN"}
+{"level":"info","message":"🔌 Socket connected: _vVlNlvYtI4hCJaEAAAQ","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"🔌 Socket connected: iO4DGPsYDS5PgqHVAAAR","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7651fe1e4077f88f87","socketId":"iO4DGPsYDS5PgqHVAAAR"}
+{"level":"info","message":"📍 Socket joined room: owner:6a0e1c7651fe1e4077f88f87","socketId":"iO4DGPsYDS5PgqHVAAAR"}
+{"error":"jwt expired","level":"error","message":"Auth middleware error:","name":"TokenExpiredError","path":"/spots"}
+{"error":"jwt expired","level":"error","message":"Auth middleware error:","name":"TokenExpiredError","path":"/spots"}
+{"level":"info","message":"✅ Token refreshed successfully","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"info","message":"❌ Socket disconnected: _vVlNlvYtI4hCJaEAAAQ"}
+{"level":"info","message":"❌ Socket disconnected: iO4DGPsYDS5PgqHVAAAR"}
+{"level":"info","message":"🔌 Socket connected: JrrAfUG11jTcFA4IAAAU","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"🔌 Socket connected: SVuu5XjOzb_FeZaOAAAV","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7651fe1e4077f88f87","socketId":"SVuu5XjOzb_FeZaOAAAV"}
+{"level":"info","message":"📍 Socket joined room: owner:6a0e1c7651fe1e4077f88f87","socketId":"SVuu5XjOzb_FeZaOAAAV"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-02.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000"}
+{"level":"info","message":"🔌 Socket connected: LeM8EKvqtbom6cJIAAAC","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"🔌 Socket connected: 7dsZbVMqRDtd5WOeAAAD","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7651fe1e4077f88f87","socketId":"LeM8EKvqtbom6cJIAAAC"}
+{"level":"info","message":"📍 Socket joined room: owner:6a0e1c7651fe1e4077f88f87","socketId":"LeM8EKvqtbom6cJIAAAC"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2beb58c49b2sm168675165ad.60 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"count":55,"level":"info","location":"fhfhfhhf","message":"✅ Batch spot creation","ownerId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-01.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000"}
+{"level":"info","message":"🔌 Socket connected: 45q2oZYPRy3RiTOXAAAC","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"🔌 Socket connected: 1n3RTNwIkNLSw2IZAAAD","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7651fe1e4077f88f87","socketId":"1n3RTNwIkNLSw2IZAAAD"}
+{"level":"info","message":"📍 Socket joined room: owner:6a0e1c7651fe1e4077f88f87","socketId":"1n3RTNwIkNLSw2IZAAAD"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2beb58b2cd6sm181759895ad.52 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-00.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000"}
+{"level":"info","message":"🔌 Socket connected: AZnEpvGMZLEhkCZ6AAAC","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"🔌 Socket connected: 4zmTc6eWva0YtY3-AAAD","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7651fe1e4077f88f87","socketId":"AZnEpvGMZLEhkCZ6AAAC"}
+{"level":"info","message":"📍 Socket joined room: owner:6a0e1c7651fe1e4077f88f87","socketId":"AZnEpvGMZLEhkCZ6AAAC"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-841d71f37bcsm4352208b3a.50 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"info","message":"✅ Station \"dadadada\" created with 11 spots"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"info","message":"✅ Station \"2ada\" created with 22 spots"}
+{"error":"jwt expired","level":"error","message":"Auth middleware error:","name":"TokenExpiredError","path":"/spots"}
+{"level":"info","message":"✅ Token refreshed successfully","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"info","message":"✅ Station \"w22\" created with 28 spots"}
+{"level":"info","message":"❌ Socket disconnected: AZnEpvGMZLEhkCZ6AAAC"}
+{"level":"info","message":"❌ Socket disconnected: 4zmTc6eWva0YtY3-AAAD"}
+{"level":"info","message":"🔌 Socket connected: N4XkW-FytfOMjZe2AAAG","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"🔌 Socket connected: 2893BhHdd6RkvrskAAAH","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7651fe1e4077f88f87","socketId":"2893BhHdd6RkvrskAAAH"}
+{"level":"info","message":"📍 Socket joined room: owner:6a0e1c7651fe1e4077f88f87","socketId":"2893BhHdd6RkvrskAAAH"}
+{"level":"info","message":"✅ Owner settings updated","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"error":"jwt expired","level":"error","message":"Auth middleware error:","name":"TokenExpiredError","path":"/me"}
+{"error":"jwt expired","level":"error","message":"Auth middleware error:","name":"TokenExpiredError","path":"/me"}
+{"level":"info","message":"✅ Token refreshed successfully","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"info","message":"❌ Socket disconnected: N4XkW-FytfOMjZe2AAAG"}
+{"level":"info","message":"❌ Socket disconnected: 2893BhHdd6RkvrskAAAH"}
+{"level":"info","message":"🔌 Socket connected: BiCXsBR7rKYUlu41AAAK","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"🔌 Socket connected: NBje7KOVl1TKxRn9AAAL","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7651fe1e4077f88f87","socketId":"NBje7KOVl1TKxRn9AAAL"}
+{"level":"info","message":"📍 Socket joined room: owner:6a0e1c7651fe1e4077f88f87","socketId":"NBje7KOVl1TKxRn9AAAL"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-00.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000"}
+{"level":"info","message":"🔌 Socket connected: U-8xcIftmTd_aIy6AAAC","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"🔌 Socket connected: cfPyM2-G92o8-iAOAAAD","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7651fe1e4077f88f87","socketId":"cfPyM2-G92o8-iAOAAAD"}
+{"level":"info","message":"📍 Socket joined room: owner:6a0e1c7651fe1e4077f88f87","socketId":"cfPyM2-G92o8-iAOAAAD"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2beb58d9fe9sm171387565ad.65 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-01.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000"}
+{"level":"info","message":"🔌 Socket connected: Eb-BzHEC9uVtsCh2AAAC","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"🔌 Socket connected: PvAszG6BXuZ_QDc3AAAD","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7651fe1e4077f88f87","socketId":"PvAszG6BXuZ_QDc3AAAD"}
+{"level":"info","message":"📍 Socket joined room: owner:6a0e1c7651fe1e4077f88f87","socketId":"PvAszG6BXuZ_QDc3AAAD"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-36b7d514483sm815943a91.0 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-01.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000"}
+{"level":"info","message":"🔌 Socket connected: XkL6X-cEUrCDnzq6AAAC","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"🔌 Socket connected: zN1n4gbJdMfwZsMFAAAD","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7651fe1e4077f88f87","socketId":"zN1n4gbJdMfwZsMFAAAD"}
+{"level":"info","message":"📍 Socket joined room: owner:6a0e1c7651fe1e4077f88f87","socketId":"zN1n4gbJdMfwZsMFAAAD"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-841f51c479dsm1536876b3a.34 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-01.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000"}
+{"error":"jwt expired","level":"warn","message":"Invalid Socket.IO token"}
+{"error":"jwt expired","level":"warn","message":"Invalid Socket.IO token"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2beb56f4343sm234853475ad.36 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-01.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 41be03b00d2f7-c85202b4442sm15252856a12.12 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"email":"owner@statio-nexus.com","level":"info","message":"✅ User logged in successfully","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"🔌 Socket connected: i7XFCUam3yvaJ2a9AAAB","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7651fe1e4077f88f87","socketId":"i7XFCUam3yvaJ2a9AAAB"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"info","message":"📍 Socket joined room: owner:6a0e1c7651fe1e4077f88f87","socketId":"i7XFCUam3yvaJ2a9AAAB"}
+{"level":"info","message":"❌ Socket disconnected: i7XFCUam3yvaJ2a9AAAB"}
+{"level":"info","message":"🔌 Socket connected: 0yFgDdOg8UlVj9erAAAE","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"🔌 Socket connected: FCQR57HEOMQxTWv0AAAF","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7651fe1e4077f88f87","socketId":"FCQR57HEOMQxTWv0AAAF"}
+{"level":"info","message":"📍 Socket joined room: owner:6a0e1c7651fe1e4077f88f87","socketId":"FCQR57HEOMQxTWv0AAAF"}
+{"level":"info","message":"❌ Socket disconnected: 0yFgDdOg8UlVj9erAAAE"}
+{"level":"info","message":"❌ Socket disconnected: FCQR57HEOMQxTWv0AAAF"}
+{"level":"info","message":"🔌 Socket connected: vFJ4bT2JuD8mF89fAAAI","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"🔌 Socket connected: IG3OIXVHz_kOKjHlAAAJ","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7651fe1e4077f88f87","socketId":"IG3OIXVHz_kOKjHlAAAJ"}
+{"level":"info","message":"📍 Socket joined room: owner:6a0e1c7651fe1e4077f88f87","socketId":"IG3OIXVHz_kOKjHlAAAJ"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-00.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000"}
+{"level":"info","message":"🔌 Socket connected: SkvkeMyfdTqeHbQxAAAC","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"🔌 Socket connected: _MgkPMMOcV3PMcY4AAAD","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7651fe1e4077f88f87","socketId":"_MgkPMMOcV3PMcY4AAAD"}
+{"level":"info","message":"📍 Socket joined room: owner:6a0e1c7651fe1e4077f88f87","socketId":"_MgkPMMOcV3PMcY4AAAD"}
+{"level":"info","message":"❌ Socket disconnected: SkvkeMyfdTqeHbQxAAAC"}
+{"level":"info","message":"❌ Socket disconnected: _MgkPMMOcV3PMcY4AAAD"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-841d70b855csm5147571b3a.38 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"info","message":"🔌 Socket connected: QEUhNdlKluROxeN_AAAG","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"🔌 Socket connected: g1aOxSBd5ohOQk69AAAH","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7651fe1e4077f88f87","socketId":"g1aOxSBd5ohOQk69AAAH"}
+{"level":"info","message":"📍 Socket joined room: owner:6a0e1c7651fe1e4077f88f87","socketId":"g1aOxSBd5ohOQk69AAAH"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-01.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000"}
+{"error":"jwt expired","level":"warn","message":"Invalid Socket.IO token"}
+{"error":"jwt expired","level":"warn","message":"Invalid Socket.IO token"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2beb5903bcasm191278825ad.77 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-01.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-841d7307596sm5977698b3a.59 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"email":"owner@statio-nexus.com","level":"info","message":"✅ User logged in successfully","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"🔌 Socket connected: qK9Z8Uw1CpYrTGoiAAAB","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7651fe1e4077f88f87","socketId":"qK9Z8Uw1CpYrTGoiAAAB"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"info","message":"📍 Socket joined room: owner:6a0e1c7651fe1e4077f88f87","socketId":"qK9Z8Uw1CpYrTGoiAAAB"}
+{"level":"info","message":"❌ Socket disconnected: qK9Z8Uw1CpYrTGoiAAAB"}
+{"level":"info","message":"🔌 Socket connected: -ZXs2u8ur45RywW0AAAE","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"🔌 Socket connected: 9HSKmGUd_SHBc6vpAAAF","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7651fe1e4077f88f87","socketId":"9HSKmGUd_SHBc6vpAAAF"}
+{"level":"info","message":"📍 Socket joined room: owner:6a0e1c7651fe1e4077f88f87","socketId":"9HSKmGUd_SHBc6vpAAAF"}
+{"level":"info","message":"❌ Socket disconnected: 9HSKmGUd_SHBc6vpAAAF"}
+{"level":"info","message":"❌ Socket disconnected: -ZXs2u8ur45RywW0AAAE"}
+{"error":"jwt expired","level":"warn","message":"Invalid Socket.IO token"}
+{"error":"jwt expired","level":"warn","message":"Invalid Socket.IO token"}

@@ -1,0 +1,6 @@
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2be2782b242sm67875225ad.64 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"error","message":"❌ MongoDB connection failed: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/"}
+{"level":"error","message":"❌ MongoDB connection failed: bad auth : Authentication failed."}
+{"level":"error","message":"❌ MongoDB connection failed: bad auth : Authentication failed."}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2bd5c26355csm222677665ad.35 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-83f19c77822sm21657143b3a.41 - gsmtp","level":"error","message":"Email transporter verification failed"}

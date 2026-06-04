@@ -1,0 +1,142 @@
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-02.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000 in development mode"}
+{"level":"info","message":"🌐 Allowed origins: http://localhost:5173, http://localhost:5174, http://127.0.0.1:5500, https://your-app.herokuapp.com, https://your-custom-domain.com"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2bf23b00ed2sm113284435ad.48 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-01.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000 in development mode"}
+{"level":"info","message":"🌐 Allowed origins: http://localhost:5173, http://localhost:5174, http://127.0.0.1:5500, https://your-app.herokuapp.com, https://your-custom-domain.com"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2bf239e5c83sm110203985ad.16 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-01.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000 in development mode"}
+{"level":"info","message":"🌐 Allowed origins: http://localhost:5173, http://localhost:5174, http://127.0.0.1:5500, https://your-app.herokuapp.com, https://your-custom-domain.com"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-84214b00d64sm10797701b3a.10 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"info","message":"SIGINT received — shutting down gracefully"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-02.ju6heal.mongodb.net"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000 in development mode"}
+{"level":"info","message":"🌐 Allowed origins: http://localhost:5173, http://localhost:5174, http://127.0.0.1:5500, https://your-app.herokuapp.com, https://your-custom-domain.com, http://10.0.2.2:5000, http://10.0.2.2:5173"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-842222e2394sm9002068b3a.2 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"identifier":"lawrenz124@gmail.com","level":"warn","message":"Failed login attempt — user not found"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-02.ju6heal.mongodb.net"}
+{"level":"info","message":"🌱 Starting Statio Nexus database seeding..."}
+{"level":"info","message":"✅ Admin exists"}
+{"level":"info","message":"✅ Owner exists"}
+{"level":"info","message":"✅ 323 station spots exist, skipping"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-00.ju6heal.mongodb.net"}
+{"level":"info","message":"🌱 Starting Statio Nexus database seeding..."}
+{"level":"info","message":"✅ Admin exists"}
+{"level":"info","message":"✅ Owner exists"}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-36dd9317116sm1273325a91.15 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"info","message":"✅ 323 station spots exist, skipping"}
+{"level":"info","message":"✅ Database seeding completed"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000 in development mode"}
+{"level":"info","message":"🌐 Allowed origins: http://localhost:5173, http://localhost:5174, http://127.0.0.1:5500, https://your-app.herokuapp.com, https://your-custom-domain.com, http://10.0.2.2:5000, http://10.0.2.2:5173"}
+{"level":"info","message":"✅ Token refreshed successfully","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"✅ Token refreshed successfully","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"info","message":"🔌 Socket connected: tgQlT0P6QhXksijeAAAD","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7651fe1e4077f88f87","socketId":"tgQlT0P6QhXksijeAAAD"}
+{"level":"info","message":"📍 Socket joined room: owner:6a0e1c7651fe1e4077f88f87","socketId":"tgQlT0P6QhXksijeAAAD"}
+{"level":"info","message":"✅ Token refreshed successfully","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"✅ Token refreshed successfully","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"info","message":"🔌 Socket connected: IY16NC3b21UTaZMkAAAG","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7651fe1e4077f88f87","socketId":"IY16NC3b21UTaZMkAAAG"}
+{"level":"info","message":"📍 Socket joined room: owner:6a0e1c7651fe1e4077f88f87","socketId":"IY16NC3b21UTaZMkAAAG"}
+{"level":"info","message":"❌ Socket disconnected: IY16NC3b21UTaZMkAAAG"}
+{"level":"info","message":"🔌 Socket connected: Kyj3LI_FPiuJQrOiAAAI","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7651fe1e4077f88f87","socketId":"Kyj3LI_FPiuJQrOiAAAI"}
+{"level":"info","message":"📍 Socket joined room: owner:6a0e1c7651fe1e4077f88f87","socketId":"Kyj3LI_FPiuJQrOiAAAI"}
+{"level":"info","message":"❌ Socket disconnected: tgQlT0P6QhXksijeAAAD"}
+{"level":"warn","message":"Attempted refresh with blacklisted token"}
+{"level":"warn","message":"Attempted refresh with blacklisted token"}
+{"level":"info","message":"SIGINT received — shutting down gracefully"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"info","message":"✅ MongoDB connected: ac-7wu8mts-shard-00-01.ju6heal.mongodb.net"}
+{"level":"info","message":"🌱 Starting Statio Nexus database seeding..."}
+{"error":"Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-36bbdf45d66sm5582682a91.8 - gsmtp","level":"error","message":"Email transporter verification failed"}
+{"level":"info","message":"✅ Admin exists"}
+{"level":"info","message":"✅ Owner exists"}
+{"level":"info","message":"✅ 323 station spots exist, skipping"}
+{"level":"info","message":"✅ Database seeding completed"}
+{"level":"info","message":"✅ NotificationService running in In-Memory Socket.IO mode"}
+{"level":"info","message":"🚀 Server running on port 5000 in development mode"}
+{"level":"info","message":"🌐 Allowed origins: http://localhost:5173, http://localhost:5174, http://127.0.0.1:5500, https://your-app.herokuapp.com, https://your-custom-domain.com, http://10.0.2.2:5000, http://10.0.2.2:5173"}
+{"email":"owner@statio-nexus.com","level":"info","message":"✅ User logged in successfully","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"info","message":"🔌 Socket connected: Dk7vTkMtJiQ1B4-PAAAB","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7651fe1e4077f88f87","socketId":"Dk7vTkMtJiQ1B4-PAAAB"}
+{"level":"info","message":"📍 Socket joined room: owner:6a0e1c7651fe1e4077f88f87","socketId":"Dk7vTkMtJiQ1B4-PAAAB"}
+{"level":"info","message":"✅ Token refreshed successfully","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"✅ Token refreshed successfully","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"info","message":"🔌 Socket connected: BXcidyL3bzEB0Vw5AAAE","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7651fe1e4077f88f87","socketId":"BXcidyL3bzEB0Vw5AAAE"}
+{"level":"info","message":"📍 Socket joined room: owner:6a0e1c7651fe1e4077f88f87","socketId":"BXcidyL3bzEB0Vw5AAAE"}
+{"level":"info","message":"❌ Socket disconnected: BXcidyL3bzEB0Vw5AAAE"}
+{"level":"info","message":"🔌 Socket connected: j7PGHjIT6lvwmiX-AAAG","role":"owner","userId":"6a0e1c7651fe1e4077f88f87"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7651fe1e4077f88f87","socketId":"j7PGHjIT6lvwmiX-AAAG"}
+{"level":"info","message":"📍 Socket joined room: owner:6a0e1c7651fe1e4077f88f87","socketId":"j7PGHjIT6lvwmiX-AAAG"}
+{"email":"admin@statio-nexus.com","level":"info","message":"✅ User logged in successfully","role":"admin","userId":"6a0e1c7551fe1e4077f88f7f"}
+{"level":"info","message":"❌ Socket disconnected: j7PGHjIT6lvwmiX-AAAG"}
+{"level":"info","message":"🔌 Socket connected: 2K-YlxPgkD-nHwrsAAAI","role":"admin","userId":"6a0e1c7551fe1e4077f88f7f"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7551fe1e4077f88f7f","socketId":"2K-YlxPgkD-nHwrsAAAI"}
+{"level":"info","message":"📍 Socket joined room: admin:global","socketId":"2K-YlxPgkD-nHwrsAAAI"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"info","message":"❌ Socket disconnected: 2K-YlxPgkD-nHwrsAAAI"}
+{"level":"info","message":"✅ Token refreshed successfully","role":"admin","userId":"6a0e1c7551fe1e4077f88f7f"}
+{"level":"info","message":"✅ Token refreshed successfully","role":"admin","userId":"6a0e1c7551fe1e4077f88f7f"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"info","message":"🔌 Socket connected: qt31wnccKicx7qWXAAAL","role":"admin","userId":"6a0e1c7551fe1e4077f88f7f"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7551fe1e4077f88f7f","socketId":"qt31wnccKicx7qWXAAAL"}
+{"level":"info","message":"📍 Socket joined room: admin:global","socketId":"qt31wnccKicx7qWXAAAL"}
+{"level":"info","message":"❌ Socket disconnected: qt31wnccKicx7qWXAAAL"}
+{"level":"info","message":"🔌 Socket connected: Y32bdm8opyw5AnvNAAAN","role":"admin","userId":"6a0e1c7551fe1e4077f88f7f"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7551fe1e4077f88f7f","socketId":"Y32bdm8opyw5AnvNAAAN"}
+{"level":"info","message":"📍 Socket joined room: admin:global","socketId":"Y32bdm8opyw5AnvNAAAN"}
+{"email":"admin@statio-nexus.com","level":"info","message":"✅ User logged in successfully","role":"admin","userId":"6a0e1c7551fe1e4077f88f7f"}
+{"level":"info","message":"❌ Socket disconnected: Y32bdm8opyw5AnvNAAAN"}
+{"level":"info","message":"🔌 Socket connected: YL9KPaK0MSMjvmjjAAAP","role":"admin","userId":"6a0e1c7551fe1e4077f88f7f"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7551fe1e4077f88f7f","socketId":"YL9KPaK0MSMjvmjjAAAP"}
+{"level":"info","message":"📍 Socket joined room: admin:global","socketId":"YL9KPaK0MSMjvmjjAAAP"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"info","message":"❌ Socket disconnected: YL9KPaK0MSMjvmjjAAAP"}
+{"level":"info","message":"✅ Token refreshed successfully","role":"admin","userId":"6a0e1c7551fe1e4077f88f7f"}
+{"level":"info","message":"✅ Token refreshed successfully","role":"admin","userId":"6a0e1c7551fe1e4077f88f7f"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"info","message":"🔌 Socket connected: v0H_RUPHqPLkp5I5AAAS","role":"admin","userId":"6a0e1c7551fe1e4077f88f7f"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7551fe1e4077f88f7f","socketId":"v0H_RUPHqPLkp5I5AAAS"}
+{"level":"info","message":"📍 Socket joined room: admin:global","socketId":"v0H_RUPHqPLkp5I5AAAS"}
+{"level":"info","message":"❌ Socket disconnected: v0H_RUPHqPLkp5I5AAAS"}
+{"level":"info","message":"🔌 Socket connected: vZ6Eb8YIBG_2VsBoAAAU","role":"admin","userId":"6a0e1c7551fe1e4077f88f7f"}
+{"level":"info","message":"📍 Socket joined room: user:6a0e1c7551fe1e4077f88f7f","socketId":"vZ6Eb8YIBG_2VsBoAAAU"}
+{"level":"info","message":"📍 Socket joined room: admin:global","socketId":"vZ6Eb8YIBG_2VsBoAAAU"}
+{"level":"info","message":"✅ Token refreshed successfully","role":"admin","userId":"6a0e1c7551fe1e4077f88f7f"}
+{"level":"info","message":"📤 EMIT → notifications:audit","module":"notification"}
+{"level":"info","message":"SIGINT received — shutting down gracefully"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"error","message":"❌ MongoDB connection failed: bad auth : authentication failed"}
+{"level":"warn","message":"⚠️ Optional environment variables missing: STRIPE_SECRET_KEY. Some features may not work."}
+{"level":"info","message":"✅ All required environment variables validated"}
+{"level":"error","message":"❌ MongoDB connection failed: bad auth : authentication failed"}
