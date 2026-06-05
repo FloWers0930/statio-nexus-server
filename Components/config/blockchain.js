@@ -16,15 +16,13 @@ if (missing.length > 0) {
     provider = new ethers.JsonRpcProvider(process.env.BESU_RPC_URL);
     wallet = new ethers.Wallet(process.env.SERVER_WALLET_PRIVATE_KEY, provider);
 
-    // Test connection asynchronously (don't block server startup)
+    // Test connection asynchronously (won't block server startup)
     provider
       .getBlockNumber()
       .then(() => console.log("✅ Blockchain connected"))
-      .catch((err) =>
-        console.warn("⚠️ Blockchain connection failed:", err.message),
-      );
+      .catch((err) => console.warn("⚠️ Blockchain RPC failed:", err.message));
   } catch (error) {
-    console.warn("⚠️ Blockchain initialization failed:", error.message);
+    console.warn("⚠️ Blockchain init failed:", error.message);
   }
 }
 

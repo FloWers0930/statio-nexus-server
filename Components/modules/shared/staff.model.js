@@ -168,6 +168,28 @@ const staffSchema = new mongoose.Schema(
       ],
     },
     isActive: { type: Boolean, default: true },
+
+    // ─── Station access & status (required by StaffView frontend) ───────────
+    station: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "StationSpot",
+      },
+    ],
+    status: {
+      type: String,
+      enum: {
+        values: ["active", "pending", "inactive"],
+        message: "Status must be active, pending or inactive",
+      },
+      default: "active",
+    },
+    lastActive: {
+      type: Date,
+      default: null,
+    },
+    // ────────────────────────────────────────────────────────────────────────
+
     deletedAt: { type: Date, default: null },
     passwordHash: String,
     salt: String,

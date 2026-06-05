@@ -41,7 +41,7 @@ function pctGrowth(current, previous) {
 }
 
 /**
- * ✅ Generate a temporary password that PASSES the User model regex.
+ * Generate a temporary password that PASSES the User model regex.
  * Must contain: 1 uppercase, 1 lowercase, 1 number, 1 special char, min 8 length.
  */
 function generateTempPassword() {
@@ -139,7 +139,8 @@ exports.getDashboard = async (req, res) => {
         spot: { $in: spotIds },
         status: "pending",
       }),
-      Staff.countDocuments({ station: { $in: spotIds } }),
+      // ✅ Fixed: count by owner, not station
+      Staff.countDocuments({ owner: ownerId }),
     ]);
 
     const thisMonth = monthlyRevenue[0]?.total || 0;
@@ -759,13 +760,15 @@ exports.deleteLocation = async (req, res) => {
 exports.getStaff = async (req, res) => {
   try {
     const ownerId = req.user._id;
-    const spots = await Station.find({ owner: ownerId }).lean();
-    const spotIds = spots.map((s) => s._id);
 
-    const staff = await Staff.find({ station: { $in: spotIds } })
+    const spots = await Station.find({ owner: ownerId }).lean();
+
+    // ✅ Fixed: query by owner so all staff appear regardless of station assignment
+    const staff = await Staff.find({ owner: ownerId })
       .populate("station", "location address spotNumber")
       .lean();
 
+    // Build availableStations map (one entry per unique location)
     const stationMap = {};
     spots.forEach((spot) => {
       if (!stationMap[spot.location]) {
@@ -779,18 +782,35 @@ exports.getStaff = async (req, res) => {
     });
     const availableStations = Object.values(stationMap);
 
-    res.json({ success: true, staff, availableStations });
+    // Normalize staff for frontend (map isActive → status, station → stationAccess)
+    const normalizedStaff = staff.map((s) => ({
+      ...s,
+      status: s.status || (s.isActive ? "active" : "inactive"),
+      stationAccess: s.station || [],
+    }));
+
+    res.json({ success: true, staff: normalizedStaff, availableStations });
   } catch (err) {
     logger.error("getStaff error:", err);
     res.status(500).json({ success: false, message: "Server error" });
   }
 };
 
-// ✅ UPDATED: Generates temp password, creates User account, sends email
+// ✅ Fixed: saves stationAccess, sets status, scoped to owner
 exports.createStaff = async (req, res) => {
   try {
     const ownerId = req.user._id;
-    const { name, fullName, email, phone, role, stationId } = req.body;
+    const {
+      name,
+      fullName,
+      email,
+      phone,
+      role,
+      stationAccess = [],
+      notes,
+      startDate,
+      sendWelcomeEmail,
+    } = req.body;
     const resolvedName = fullName || name;
 
     if (!resolvedName || !email) {
@@ -799,6 +819,7 @@ exports.createStaff = async (req, res) => {
         .json({ success: false, message: "Name and Email are required" });
     }
 
+    // Check for duplicate user or staff
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(409).json({
@@ -815,10 +836,17 @@ exports.createStaff = async (req, res) => {
       });
     }
 
-    // 🔐 Generate Secure Temporary Password (passes User model regex)
+    // Validate stationAccess IDs belong to this owner
+    const ownedSpots = await Station.find({ owner: ownerId }, "_id").lean();
+    const ownedSpotIds = ownedSpots.map((s) => s._id.toString());
+    const validStationIds = stationAccess.filter((id) =>
+      ownedSpotIds.includes(id.toString()),
+    );
+
+    // Generate secure temporary password
     const tempPassword = generateTempPassword();
 
-    // 👤 Create User Account (Authentication)
+    // Create User account for authentication
     const user = await User.create({
       username: email
         .split("@")[0]
@@ -832,23 +860,27 @@ exports.createStaff = async (req, res) => {
       isActive: true,
     });
 
-    // 📧 Send Email with Temporary Password
-    await sendTemporaryPasswordEmail(email, resolvedName, tempPassword);
+    // Send email with temporary credentials (only if requested or by default)
+    if (sendWelcomeEmail !== false) {
+      await sendTemporaryPasswordEmail(email, resolvedName, tempPassword);
+    }
 
-    // 📋 Create Staff Profile (HR Data)
+    // Create Staff profile
     const staff = await Staff.create({
       owner: ownerId,
+      station: validStationIds, // ✅ Fixed: save station access
       name: resolvedName,
       username: user.username,
       email,
-      phone: phone || "+0000000000", // ✅ Fixed: valid phone format placeholder
+      phone: phone?.trim() || "+0000000000",
       dateOfBirth: new Date("2000-01-01"),
       gender: "Other",
       address: "To be updated",
       idNumber: "PENDING",
       emergencyContactName: "To be updated",
-      emergencyContactPhone: "+0000000000", // ✅ Fixed: valid phone format placeholder
+      emergencyContactPhone: "+0000000000",
       role: role === "admin" ? "admin" : "attendant",
+      status: "active", // ✅ Fixed: set initial status
       isActive: true,
     });
 
@@ -856,7 +888,10 @@ exports.createStaff = async (req, res) => {
 
     res.status(201).json({
       success: true,
-      data: staff,
+      data: {
+        ...staff.toObject(),
+        stationAccess: staff.station, // normalize for frontend
+      },
       message:
         "Employee added. Temporary login credentials sent to their email.",
     });
@@ -866,17 +901,22 @@ exports.createStaff = async (req, res) => {
   }
 };
 
+// ✅ Fixed: query by owner instead of station
 exports.updateStaff = async (req, res) => {
   try {
     const ownerId = req.user._id;
     const { id } = req.params;
 
-    const spots = await Station.find({ owner: ownerId }, "_id").lean();
-    const spotIds = spots.map((s) => s._id);
+    // Map stationAccess → station if frontend sends stationAccess
+    const updateData = { ...req.body };
+    if (updateData.stationAccess !== undefined) {
+      updateData.station = updateData.stationAccess;
+      delete updateData.stationAccess;
+    }
 
     const staff = await Staff.findOneAndUpdate(
-      { _id: id, station: { $in: spotIds } },
-      { $set: req.body },
+      { _id: id, owner: ownerId }, // ✅ Fixed: was { station: { $in: spotIds } }
+      { $set: updateData },
       { new: true, runValidators: true },
     );
 
@@ -886,25 +926,30 @@ exports.updateStaff = async (req, res) => {
         .json({ success: false, message: "Staff member not found" });
 
     await emitToUser(ownerId, "staffUpdated", { staffId: staff._id });
-    res.json({ success: true, data: staff });
+    res.json({
+      success: true,
+      data: {
+        ...staff.toObject(),
+        stationAccess: staff.station,
+      },
+    });
   } catch (err) {
     logger.error("updateStaff error:", err);
     res.status(500).json({ success: false, message: "Server error" });
   }
 };
 
+// ✅ Fixed: query by owner instead of station
 exports.deleteStaff = async (req, res) => {
   try {
     const ownerId = req.user._id;
     const { id } = req.params;
 
-    const spots = await Station.find({ owner: ownerId }, "_id").lean();
-    const spotIds = spots.map((s) => s._id);
-
     const staff = await Staff.findOneAndDelete({
       _id: id,
-      station: { $in: spotIds },
+      owner: ownerId, // ✅ Fixed: was { station: { $in: spotIds } }
     });
+
     if (!staff)
       return res
         .status(404)
@@ -918,23 +963,32 @@ exports.deleteStaff = async (req, res) => {
   }
 };
 
+// ✅ Fixed: query by owner instead of station
 exports.resendStaffInvite = async (req, res) => {
   try {
     const ownerId = req.user._id;
     const { id } = req.params;
 
-    const spots = await Station.find({ owner: ownerId }, "_id").lean();
-    const spotIds = spots.map((s) => s._id);
+    const staff = await Staff.findOne({
+      _id: id,
+      owner: ownerId, // ✅ Fixed: was { station: { $in: spotIds } }
+    });
 
-    const staff = await Staff.findOne({ _id: id, station: { $in: spotIds } });
     if (!staff)
       return res
         .status(404)
         .json({ success: false, message: "Staff member not found" });
 
-    logger.info(
-      `Resend invite requested for staff ${staff.email} by owner ${ownerId}`,
+    // Generate new temp password and resend
+    const tempPassword = generateTempPassword();
+    await User.findOneAndUpdate(
+      { email: staff.email },
+      { password: tempPassword, mustChangePassword: true },
+      { runValidators: false },
     );
+    await sendTemporaryPasswordEmail(staff.email, staff.name, tempPassword);
+
+    logger.info(`Resend invite for staff ${staff.email} by owner ${ownerId}`);
 
     res.json({ success: true, message: "Invite resent successfully" });
   } catch (err) {
