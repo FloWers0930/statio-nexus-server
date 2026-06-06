@@ -17,6 +17,7 @@ const loggerMiddleware = require("./Components/middlewares/requestLogger");
 const { apiLimiter } = require("./Components/middlewares/rateLimiter");
 const errorHandler = require("./Components/middlewares/errorHandler");
 const Audit = require("./Components/modules/audit/audit.model");
+const inviteRoutes = require("./Components/modules/invite/invite.routes");
 
 // ── Route Imports with Debug Logging ──────────────────────────────────────────
 const authRoutes = require("./Components/modules/auth/auth.routes");
@@ -168,7 +169,7 @@ app.use("/api/analytics", analyticsRoutes);
 app.use("/api/audit", auditRoutes);
 app.use("/api/transactions", transactionRoutes);
 console.log("✅ All routes registered successfully");
-
+app.use("/api/invite", inviteRoutes);
 app.get("/api/health", (_req, res) =>
   res.json({ success: true, status: "OK" }),
 );
