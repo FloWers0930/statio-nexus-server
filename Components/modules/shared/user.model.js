@@ -1,6 +1,4 @@
 // backend/src/modules/shared/user.model.js
-// User model (admin, owner, staff, customer)
-
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
@@ -29,11 +27,13 @@ const userSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: [true, "Password is required"],
+      // ✅ Not required at creation — invite users set their own password
       minlength: [8, "Password must be at least 8 characters"],
       select: false,
       validate: {
         validator: function (v) {
+          // Only validate if password is being set
+          if (!v) return true;
           return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(
             v,
           );
@@ -56,6 +56,27 @@ const userSchema = new mongoose.Schema(
     lastLogin: { type: Date },
     mustChangePassword: { type: Boolean, default: false },
 
+    // ── Invite flow ──────────────────────────────────────────────────────────
+    inviteToken: {
+      type: String,
+      default: null,
+      select: false,
+    },
+    inviteExpires: {
+      type: Date,
+      default: null,
+    },
+    invitedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      default: null,
+    },
+    accountSetupComplete: {
+      type: Boolean,
+      default: false,
+    },
+    // ────────────────────────────────────────────────────────────────────────
+
     // Owner-specific settings
     settings: {
       businessName: { type: String, trim: true },
@@ -70,9 +91,10 @@ const userSchema = new mongoose.Schema(
 );
 
 userSchema.index({ role: 1, isActive: 1 });
+userSchema.index({ inviteToken: 1 }, { sparse: true });
 
 userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) return next();
+  if (!this.isModified("password") || !this.password) return next();
   this.password = await bcrypt.hash(this.password, 12);
   next();
 });
