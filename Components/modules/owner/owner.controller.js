@@ -14,24 +14,19 @@ const AuditLog = require("../audit/audit.model.js");
 const { emitToUser } = require("../../services/notificationService.js");
 const { sendTemporaryPasswordEmail } = require("../../config/email.js");
 
-// ─── Helpers ─────────────────────────────────────────────────────────────────
+// ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function zeroPadDays(data, startDate, endDate) {
   const map = {};
-  for (const item of data) {
-    map[item._id] = item.total;
-  }
-
+  for (const item of data) map[item._id] = item.total;
   const result = [];
   const cursor = new Date(startDate);
   const end = new Date(endDate);
-
   while (cursor <= end) {
     const key = cursor.toISOString().slice(0, 10);
     result.push({ date: key, revenue: map[key] || 0 });
     cursor.setDate(cursor.getDate() + 1);
   }
-
   return result;
 }
 
@@ -40,31 +35,37 @@ function pctGrowth(current, previous) {
   return Math.round(((current - previous) / previous) * 100 * 10) / 10;
 }
 
-/**
- * Generate a temporary password that PASSES the User model regex.
- * Must contain: 1 uppercase, 1 lowercase, 1 number, 1 special char, min 8 length.
- */
 function generateTempPassword() {
   const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const lower = "abcdefghijklmnopqrstuvwxyz";
   const nums = "0123456789";
   const special = "@$!%*?&";
   const all = upper + lower + nums + special;
-
   let pass = "";
   pass += upper[Math.floor(Math.random() * upper.length)];
   pass += lower[Math.floor(Math.random() * lower.length)];
   pass += nums[Math.floor(Math.random() * nums.length)];
   pass += special[Math.floor(Math.random() * special.length)];
-
-  for (let i = 0; i < 8; i++) {
+  for (let i = 0; i < 8; i++)
     pass += all[Math.floor(Math.random() * all.length)];
-  }
-
   return pass
     .split("")
     .sort(() => Math.random() - 0.5)
     .join("");
+}
+
+// ─── Audit helper ─────────────────────────────────────────────────────────────
+// Wraps req.app.locals.emitAuditLog so every caller is one line.
+function audit(req, entry) {
+  const fn = req.app.locals.emitAuditLog;
+  if (!fn) return;
+  fn({
+    user: req.user._id,
+    userName: req.user.name || req.user.username,
+    userRole: req.user.role,
+    isCritical: false,
+    ...entry,
+  });
 }
 
 // ─── Dashboard ────────────────────────────────────────────────────────────────
@@ -72,14 +73,11 @@ function generateTempPassword() {
 exports.getDashboard = async (req, res) => {
   try {
     const ownerId = req.user._id;
-
     const spots = await Station.find({ owner: ownerId }).lean();
     const spotIds = spots.map((s) => s._id);
-
     const uniqueLocations = new Set(spots.map((s) => s.location));
     const totalStations = uniqueLocations.size;
     const totalSpots = spots.length;
-
     const now = new Date();
     const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
     const startOfLastMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1);
@@ -127,26 +125,16 @@ exports.getDashboard = async (req, res) => {
         { $group: { _id: null, total: { $sum: "$totalCost" } } },
       ]),
       Booking.aggregate([
-        {
-          $match: {
-            spot: { $in: spotIds },
-            paymentStatus: "paid",
-          },
-        },
+        { $match: { spot: { $in: spotIds }, paymentStatus: "paid" } },
         { $group: { _id: null, total: { $sum: "$totalCost" } } },
       ]),
-      Booking.countDocuments({
-        spot: { $in: spotIds },
-        status: "pending",
-      }),
-      // ✅ Fixed: count by owner, not station
+      Booking.countDocuments({ spot: { $in: spotIds }, status: "pending" }),
       Staff.countDocuments({ owner: ownerId }),
     ]);
 
     const thisMonth = monthlyRevenue[0]?.total || 0;
     const lastMonth = lastMonthRevenue[0]?.total || 0;
     const allTime = totalRevenue[0]?.total || 0;
-
     const occupancyRate =
       totalSpots > 0 ? Math.round((activeBookings / totalSpots) * 100) : 0;
 
@@ -178,15 +166,12 @@ exports.getAnalytics = async (req, res) => {
     const ownerId = req.user._id;
     const { period = "30" } = req.query;
     const days = Math.min(Math.max(parseInt(period, 10) || 30, 7), 365);
-
     const spots = await Station.find({ owner: ownerId }).lean();
     const spotIds = spots.map((s) => s._id);
-
     const now = new Date();
     const startDate = new Date(now);
     startDate.setDate(startDate.getDate() - (days - 1));
     startDate.setHours(0, 0, 0, 0);
-
     const prevStart = new Date(startDate);
     prevStart.setDate(prevStart.getDate() - days);
     const prevEnd = new Date(startDate);
@@ -357,30 +342,25 @@ exports.getAnalytics = async (req, res) => {
 
     const activeMap = {};
     for (const o of occupancyByLocation) activeMap[String(o._id)] = o;
-
     const occupancyByLocationName = {};
-    for (const [spotId, o] of Object.entries(activeMap)) {
+    for (const [, o] of Object.entries(activeMap)) {
       const loc = o.name || "Unknown";
-      if (!occupancyByLocationName[loc]) {
+      if (!occupancyByLocationName[loc])
         occupancyByLocationName[loc] = {
           location: loc,
           activeBookings: 0,
           totalSpots: locationSpotCounts[loc] || 0,
         };
-      }
       occupancyByLocationName[loc].activeBookings += o.activeBookings || 0;
     }
-
     for (const [loc, count] of Object.entries(locationSpotCounts)) {
-      if (!occupancyByLocationName[loc]) {
+      if (!occupancyByLocationName[loc])
         occupancyByLocationName[loc] = {
           location: loc,
           activeBookings: 0,
           totalSpots: count,
         };
-      }
     }
-
     const fullOccupancy = Object.values(occupancyByLocationName).map((o) => ({
       ...o,
       occupancyRate:
@@ -389,30 +369,25 @@ exports.getAnalytics = async (req, res) => {
           : 0,
     }));
 
-    let normalizedTopLocations;
-    if (topLocations.length > 0) {
-      normalizedTopLocations = topLocations.map((t) => ({
-        location: t._id || "Unknown",
-        revenue: t.revenue || 0,
-        bookings: t.bookings || 0,
-        total: locationSpotCounts[t._id] || 0,
-        occupied: 0,
-      }));
-    } else {
-      normalizedTopLocations = Object.entries(locationSpotCounts)
-        .map(([location, total]) => ({
-          location,
-          revenue: 0,
-          bookings: 0,
-          total,
-          occupied: 0,
-        }))
-        .sort((a, b) => b.total - a.total)
-        .slice(0, 5);
-    }
-
-    const revenueByDayFinal =
-      revenueByDay.length > 0 ? revenueByDay : zeroPadDays([], startDate, now);
+    const normalizedTopLocations =
+      topLocations.length > 0
+        ? topLocations.map((t) => ({
+            location: t._id || "Unknown",
+            revenue: t.revenue || 0,
+            bookings: t.bookings || 0,
+            total: locationSpotCounts[t._id] || 0,
+            occupied: 0,
+          }))
+        : Object.entries(locationSpotCounts)
+            .map(([location, total]) => ({
+              location,
+              revenue: 0,
+              bookings: 0,
+              total,
+              occupied: 0,
+            }))
+            .sort((a, b) => b.total - a.total)
+            .slice(0, 5);
 
     const todayStart = new Date();
     todayStart.setHours(0, 0, 0, 0);
@@ -442,7 +417,10 @@ exports.getAnalytics = async (req, res) => {
           bookingGrowth: null,
         },
         charts: {
-          revenueByDay: revenueByDayFinal,
+          revenueByDay:
+            revenueByDay.length > 0
+              ? revenueByDay
+              : zeroPadDays([], startDate, now),
           occupancyByLocation: fullOccupancy,
           topLocations: normalizedTopLocations,
           bookingStatusBreakdown: bookingStatusBreakdown.map((b) => ({
@@ -478,15 +456,12 @@ exports.getRevenue = async (req, res) => {
     const ownerId = req.user._id;
     const { period = "30" } = req.query;
     const days = Math.min(Math.max(parseInt(period, 10) || 30, 7), 365);
-
     const spots = await Station.find({ owner: ownerId }).lean();
     const spotIds = spots.map((s) => s._id);
-
     const now = new Date();
     const startDate = new Date(now);
     startDate.setDate(startDate.getDate() - (days - 1));
     startDate.setHours(0, 0, 0, 0);
-
     const prevStart = new Date(startDate);
     prevStart.setDate(prevStart.getDate() - days);
     const prevEnd = new Date(startDate);
@@ -626,7 +601,6 @@ exports.getLocations = async (req, res) => {
     const ownerId = req.user._id;
     const { page = 1, limit = 100 } = req.query;
     const skip = (parseInt(page, 10) - 1) * parseInt(limit, 10);
-
     const [spots, total] = await Promise.all([
       Station.find({ owner: ownerId })
         .sort({ createdAt: -1 })
@@ -635,7 +609,6 @@ exports.getLocations = async (req, res) => {
         .lean(),
       Station.countDocuments({ owner: ownerId }),
     ]);
-
     res.json({ success: true, spots, total });
   } catch (err) {
     logger.error("getLocations error:", err);
@@ -658,20 +631,20 @@ exports.createLocation = async (req, res) => {
       amenities,
       coordinates,
     } = req.body;
-
     const resolvedName = location || name;
     const resolvedRate = hourlyRate !== undefined ? hourlyRate : pricePerHour;
 
     if (!resolvedName || !address || !resolvedRate) {
-      return res.status(400).json({
-        success: false,
-        message: "location, address, and hourlyRate are required",
-      });
+      return res
+        .status(400)
+        .json({
+          success: false,
+          message: "location, address, and hourlyRate are required",
+        });
     }
 
     const count = Math.max(1, parseInt(totalSpots, 10) || 1);
     const rate = parseFloat(resolvedRate);
-
     const existing = await Station.findOne(
       { owner: ownerId, location: resolvedName },
       { spotNumber: 1 },
@@ -698,6 +671,14 @@ exports.createLocation = async (req, res) => {
       `${count} spot(s) created at "${resolvedName}" by owner ${ownerId}`,
     );
 
+    // ✅ Audit log
+    audit(req, {
+      action: "spot_created",
+      details: `Created ${count} spot(s) at "${resolvedName}" (₱${rate}/hr)`,
+      newValue: { location: resolvedName, address, count, hourlyRate: rate },
+      isCritical: false,
+    });
+
     res.status(201).json({ success: true, data: spots });
   } catch (err) {
     logger.error("createLocation error:", err);
@@ -709,7 +690,6 @@ exports.updateLocation = async (req, res) => {
   try {
     const ownerId = req.user._id;
     const { id } = req.params;
-
     const { location, name, hourlyRate, pricePerHour, ...rest } = req.body;
     const updateFields = { ...rest };
     if (location !== undefined) updateFields.location = location;
@@ -719,6 +699,7 @@ exports.updateLocation = async (req, res) => {
     else if (pricePerHour !== undefined)
       updateFields.hourlyRate = parseFloat(pricePerHour);
 
+    const old = await Station.findOne({ _id: id, owner: ownerId }).lean();
     const station = await Station.findOneAndUpdate(
       { _id: id, owner: ownerId },
       { $set: updateFields },
@@ -729,6 +710,16 @@ exports.updateLocation = async (req, res) => {
       return res
         .status(404)
         .json({ success: false, message: "Station not found" });
+
+    // ✅ Audit log
+    audit(req, {
+      action: "spot_updated",
+      details: `Updated station "${station.location}" (ID: ${id})`,
+      oldValue: old,
+      newValue: updateFields,
+      isCritical: false,
+    });
+
     res.json({ success: true, data: station });
   } catch (err) {
     logger.error("updateLocation error:", err);
@@ -740,7 +731,6 @@ exports.deleteLocation = async (req, res) => {
   try {
     const ownerId = req.user._id;
     const { id } = req.params;
-
     const station = await Station.findOneAndDelete({ _id: id, owner: ownerId });
     if (!station)
       return res
@@ -748,6 +738,15 @@ exports.deleteLocation = async (req, res) => {
         .json({ success: false, message: "Station not found" });
 
     logger.info(`Station deleted: ${id} by owner ${ownerId}`);
+
+    // ✅ Audit log
+    audit(req, {
+      action: "spot_deleted",
+      details: `Deleted station "${station.location}" (ID: ${id})`,
+      oldValue: { id, location: station.location },
+      isCritical: true,
+    });
+
     res.json({ success: true, message: "Station deleted" });
   } catch (err) {
     logger.error("deleteLocation error:", err);
@@ -760,7 +759,6 @@ exports.deleteLocation = async (req, res) => {
 exports.getStaff = async (req, res) => {
   try {
     const ownerId = req.user._id;
-
     const spots = await Station.find({ owner: ownerId }).lean();
 
     // ✅ Fixed: query by owner so all staff appear regardless of station assignment
@@ -768,7 +766,6 @@ exports.getStaff = async (req, res) => {
       .populate("station", "location address spotNumber")
       .lean();
 
-    // Build availableStations map (one entry per unique location)
     const stationMap = {};
     spots.forEach((spot) => {
       if (!stationMap[spot.location]) {
@@ -782,7 +779,6 @@ exports.getStaff = async (req, res) => {
     });
     const availableStations = Object.values(stationMap);
 
-    // Normalize staff for frontend (map isActive → status, station → stationAccess)
     const normalizedStaff = staff.map((s) => ({
       ...s,
       status: s.status || (s.isActive ? "active" : "inactive"),
@@ -796,7 +792,6 @@ exports.getStaff = async (req, res) => {
   }
 };
 
-// ✅ Fixed: saves stationAccess, sets status, scoped to owner
 exports.createStaff = async (req, res) => {
   try {
     const ownerId = req.user._id;
@@ -807,8 +802,6 @@ exports.createStaff = async (req, res) => {
       phone,
       role,
       stationAccess = [],
-      notes,
-      startDate,
       sendWelcomeEmail,
     } = req.body;
     const resolvedName = fullName || name;
@@ -819,22 +812,23 @@ exports.createStaff = async (req, res) => {
         .json({ success: false, message: "Name and Email are required" });
     }
 
-    // Check for duplicate user or staff
     const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.status(409).json({
-        success: false,
-        message: "A user with this email already exists",
-      });
-    }
+    if (existingUser)
+      return res
+        .status(409)
+        .json({
+          success: false,
+          message: "A user with this email already exists",
+        });
 
     const existingStaff = await Staff.findOne({ email });
-    if (existingStaff) {
-      return res.status(409).json({
-        success: false,
-        message: "Staff member with this email already exists",
-      });
-    }
+    if (existingStaff)
+      return res
+        .status(409)
+        .json({
+          success: false,
+          message: "Staff member with this email already exists",
+        });
 
     // Validate stationAccess IDs belong to this owner
     const ownedSpots = await Station.find({ owner: ownerId }, "_id").lean();
@@ -843,10 +837,8 @@ exports.createStaff = async (req, res) => {
       ownedSpotIds.includes(id.toString()),
     );
 
-    // Generate secure temporary password
     const tempPassword = generateTempPassword();
 
-    // Create User account for authentication
     const user = await User.create({
       username: email
         .split("@")[0]
@@ -860,15 +852,13 @@ exports.createStaff = async (req, res) => {
       isActive: true,
     });
 
-    // Send email with temporary credentials (only if requested or by default)
     if (sendWelcomeEmail !== false) {
       await sendTemporaryPasswordEmail(email, resolvedName, tempPassword);
     }
 
-    // Create Staff profile
     const staff = await Staff.create({
       owner: ownerId,
-      station: validStationIds, // ✅ Fixed: save station access
+      station: validStationIds,
       name: resolvedName,
       username: user.username,
       email,
@@ -880,18 +870,30 @@ exports.createStaff = async (req, res) => {
       emergencyContactName: "To be updated",
       emergencyContactPhone: "+0000000000",
       role: role === "admin" ? "admin" : "attendant",
-      status: "active", // ✅ Fixed: set initial status
+      status: "active",
       isActive: true,
     });
 
     logger.info(`New staff member created: ${email} (User ID: ${user._id})`);
 
+    // ✅ Audit log
+    audit(req, {
+      action: "staff_created",
+      details: `Added staff member "${resolvedName}" (${email}) with role "${
+        role || "staff"
+      }"`,
+      newValue: {
+        name: resolvedName,
+        email,
+        role: role || "staff",
+        stationCount: validStationIds.length,
+      },
+      isCritical: false,
+    });
+
     res.status(201).json({
       success: true,
-      data: {
-        ...staff.toObject(),
-        stationAccess: staff.station, // normalize for frontend
-      },
+      data: { ...staff.toObject(), stationAccess: staff.station },
       message:
         "Employee added. Temporary login credentials sent to their email.",
     });
@@ -901,21 +903,20 @@ exports.createStaff = async (req, res) => {
   }
 };
 
-// ✅ Fixed: query by owner instead of station
 exports.updateStaff = async (req, res) => {
   try {
     const ownerId = req.user._id;
     const { id } = req.params;
 
-    // Map stationAccess → station if frontend sends stationAccess
     const updateData = { ...req.body };
     if (updateData.stationAccess !== undefined) {
       updateData.station = updateData.stationAccess;
       delete updateData.stationAccess;
     }
 
+    const old = await Staff.findOne({ _id: id, owner: ownerId }).lean();
     const staff = await Staff.findOneAndUpdate(
-      { _id: id, owner: ownerId }, // ✅ Fixed: was { station: { $in: spotIds } }
+      { _id: id, owner: ownerId },
       { $set: updateData },
       { new: true, runValidators: true },
     );
@@ -925,13 +926,19 @@ exports.updateStaff = async (req, res) => {
         .status(404)
         .json({ success: false, message: "Staff member not found" });
 
+    // ✅ Audit log
+    audit(req, {
+      action: "staff_updated",
+      details: `Updated staff member "${staff.name}" (${staff.email})`,
+      oldValue: { role: old?.role, status: old?.status },
+      newValue: { role: staff.role, status: staff.status },
+      isCritical: false,
+    });
+
     await emitToUser(ownerId, "staffUpdated", { staffId: staff._id });
     res.json({
       success: true,
-      data: {
-        ...staff.toObject(),
-        stationAccess: staff.station,
-      },
+      data: { ...staff.toObject(), stationAccess: staff.station },
     });
   } catch (err) {
     logger.error("updateStaff error:", err);
@@ -939,21 +946,24 @@ exports.updateStaff = async (req, res) => {
   }
 };
 
-// ✅ Fixed: query by owner instead of station
 exports.deleteStaff = async (req, res) => {
   try {
     const ownerId = req.user._id;
     const { id } = req.params;
 
-    const staff = await Staff.findOneAndDelete({
-      _id: id,
-      owner: ownerId, // ✅ Fixed: was { station: { $in: spotIds } }
-    });
-
+    const staff = await Staff.findOneAndDelete({ _id: id, owner: ownerId });
     if (!staff)
       return res
         .status(404)
         .json({ success: false, message: "Staff member not found" });
+
+    // ✅ Audit log
+    audit(req, {
+      action: "staff_deleted",
+      details: `Removed staff member "${staff.name}" (${staff.email})`,
+      oldValue: { name: staff.name, email: staff.email, role: staff.role },
+      isCritical: true,
+    });
 
     await emitToUser(ownerId, "staffDeleted", { staffId: id });
     res.json({ success: true, message: "Staff member removed" });
@@ -963,23 +973,17 @@ exports.deleteStaff = async (req, res) => {
   }
 };
 
-// ✅ Fixed: query by owner instead of station
 exports.resendStaffInvite = async (req, res) => {
   try {
     const ownerId = req.user._id;
     const { id } = req.params;
 
-    const staff = await Staff.findOne({
-      _id: id,
-      owner: ownerId, // ✅ Fixed: was { station: { $in: spotIds } }
-    });
-
+    const staff = await Staff.findOne({ _id: id, owner: ownerId });
     if (!staff)
       return res
         .status(404)
         .json({ success: false, message: "Staff member not found" });
 
-    // Generate new temp password and resend
     const tempPassword = generateTempPassword();
     await User.findOneAndUpdate(
       { email: staff.email },
@@ -989,6 +993,13 @@ exports.resendStaffInvite = async (req, res) => {
     await sendTemporaryPasswordEmail(staff.email, staff.name, tempPassword);
 
     logger.info(`Resend invite for staff ${staff.email} by owner ${ownerId}`);
+
+    // ✅ Audit log
+    audit(req, {
+      action: "staff_updated",
+      details: `Resent login credentials to staff member "${staff.name}" (${staff.email})`,
+      isCritical: false,
+    });
 
     res.json({ success: true, message: "Invite resent successfully" });
   } catch (err) {
@@ -1018,11 +1029,24 @@ exports.getProfile = async (req, res) => {
 exports.updateProfile = async (req, res) => {
   try {
     const { name, phone, businessName, businessAddress } = req.body;
+    const old = await User.findById(req.user._id)
+      .select("name phone businessName businessAddress")
+      .lean();
     const user = await User.findByIdAndUpdate(
       req.user._id,
       { $set: { name, phone, businessName, businessAddress } },
       { new: true, runValidators: true },
     ).select("-password -refreshToken");
+
+    // ✅ Audit log
+    audit(req, {
+      action: "settings_updated",
+      details: `Updated profile information`,
+      oldValue: old,
+      newValue: { name, phone, businessName, businessAddress },
+      isCritical: false,
+    });
+
     res.json({ success: true, data: user });
   } catch (err) {
     logger.error("updateProfile error:", err);
@@ -1043,15 +1067,11 @@ exports.getOwnerBookings = async (req, res) => {
   try {
     const ownerId = req.user._id;
     const { status, page = 1, limit = 20 } = req.query;
-
     const spots = await Station.find({ owner: ownerId }, "_id").lean();
     const spotIds = spots.map((s) => s._id);
-
     const filter = { spot: { $in: spotIds } };
     if (status) filter.status = status;
-
     const skip = (parseInt(page, 10) - 1) * parseInt(limit, 10);
-
     const [bookings, total] = await Promise.all([
       Booking.find(filter)
         .populate({ path: "user", select: "name email", strictPopulate: false })
@@ -1066,7 +1086,6 @@ exports.getOwnerBookings = async (req, res) => {
         .lean(),
       Booking.countDocuments(filter),
     ]);
-
     res.json({
       success: true,
       bookings,
@@ -1092,7 +1111,6 @@ exports.performOCR = async (req, res) => {
         .status(400)
         .json({ success: false, message: "No file provided" });
     }
-
     const buffer = req.file
       ? req.file.buffer
       : Buffer.from(req.body.fileBase64, "base64");
@@ -1120,7 +1138,6 @@ exports.performOCR = async (req, res) => {
     const worker = await createWorker("eng");
     const { data } = await worker.recognize(imageBuffer);
     await worker.terminate();
-
     res.json({
       success: true,
       data: {
@@ -1141,15 +1158,19 @@ exports.changePassword = async (req, res) => {
   try {
     const { currentPassword, newPassword } = req.body;
     if (!currentPassword || !newPassword)
-      return res.status(400).json({
-        success: false,
-        message: "currentPassword and newPassword are required",
-      });
+      return res
+        .status(400)
+        .json({
+          success: false,
+          message: "currentPassword and newPassword are required",
+        });
     if (newPassword.length < 8)
-      return res.status(400).json({
-        success: false,
-        message: "New password must be at least 8 characters",
-      });
+      return res
+        .status(400)
+        .json({
+          success: false,
+          message: "New password must be at least 8 characters",
+        });
 
     const user = await User.findById(req.user._id).select("+password");
     if (!user)
@@ -1168,6 +1189,14 @@ exports.changePassword = async (req, res) => {
     await user.save();
 
     logger.info(`Password changed for user ${user._id}`);
+
+    // ✅ Audit log
+    audit(req, {
+      action: "password_changed",
+      details: `Owner changed their password`,
+      isCritical: true,
+    });
+
     res.json({ success: true, message: "Password updated successfully" });
   } catch (err) {
     logger.error("changePassword error:", err);
@@ -1236,6 +1265,14 @@ exports.verifyTwoFactor = async (req, res) => {
     await user.save();
 
     logger.info(`2FA enabled for user ${user._id}`);
+
+    // ✅ Audit log
+    audit(req, {
+      action: "settings_updated",
+      details: `Owner enabled two-factor authentication`,
+      isCritical: true,
+    });
+
     res.json({
       success: true,
       message: "Two-factor authentication enabled",
@@ -1251,10 +1288,12 @@ exports.disableTwoFactor = async (req, res) => {
   try {
     const { password } = req.body;
     if (!password)
-      return res.status(400).json({
-        success: false,
-        message: "Password is required to disable 2FA",
-      });
+      return res
+        .status(400)
+        .json({
+          success: false,
+          message: "Password is required to disable 2FA",
+        });
 
     const user = await User.findById(req.user._id).select("+password");
     if (!user)
@@ -1275,6 +1314,14 @@ exports.disableTwoFactor = async (req, res) => {
     await user.save();
 
     logger.info(`2FA disabled for user ${user._id}`);
+
+    // ✅ Audit log
+    audit(req, {
+      action: "settings_updated",
+      details: `Owner disabled two-factor authentication`,
+      isCritical: true,
+    });
+
     res.json({ success: true, message: "Two-factor authentication disabled" });
   } catch (err) {
     logger.error("disableTwoFactor error:", err);

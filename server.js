@@ -360,7 +360,6 @@ const validateEnvironment = () => {
 
   logger.info("✅ All required environment variables validated");
 };
-
 const start = async () => {
   validateEnvironment();
   await connectDB();
